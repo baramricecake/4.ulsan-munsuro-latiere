@@ -99,13 +99,13 @@ export default function Home() {
       </section>
 
       {/* ── 공지 띠 ── */}
-      <div className="w-full bg-[#1C2E50] text-white py-2.5 flex items-center gap-2 text-[11px] font-bold tracking-widest overflow-hidden px-4">
+      <div className="w-full bg-[#1C2E50] text-white py-2.5 flex items-center gap-2 text-[11px] font-bold tracking-widest overflow-hidden px-6">
         <span className="w-1.5 h-1.5 rounded-full bg-[#B89A5A] animate-pulse flex-shrink-0" />
         <span className="whitespace-nowrap">트램1호선 공업로터리역 초역세권 · 계약금 5% · 1차 500만원</span>
       </div>
 
       {/* ── 브랜드 소개 ── */}
-      <section className="w-full bg-white px-4 py-12 text-center">
+      <section className="w-full bg-white px-6 py-12 text-center">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-3">MUNSURO LATIERE 673</p>
         <h2 className="text-[22px] font-black text-[#1C2E50] leading-snug tracking-tight mb-4">
           울산을 새로삶
@@ -120,7 +120,7 @@ export default function Home() {
       </section>
 
       {/* ── 공급 현황 ── */}
-      <section className="w-full bg-[#f8f7f5] px-4 py-8">
+      <section className="w-full bg-[#f8f7f5] px-6 py-8">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">SUPPLY INFO</p>
         <div className="grid grid-cols-2 gap-px rounded-lg overflow-hidden border border-gray-200">
           {[
@@ -140,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* ── 7대 프리미엄 ── */}
-      <section className="w-full bg-white px-4 py-12">
+      <section className="w-full bg-white px-6 py-12">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">PREMIUM</p>
         <h2 className="text-[20px] font-black text-[#1C2E50] tracking-tight mb-8 leading-snug">
           옥신정의 진정한 프리미엄을<br />모두 담았습니다
@@ -160,7 +160,7 @@ export default function Home() {
       </section>
 
       {/* ── 관심고객 등록 (메인 CTA) ── */}
-      <section id="form" className="w-full bg-[#1C2E50] px-4 py-12">
+      <section id="form" className="w-full bg-[#1C2E50] px-6 py-12">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">REGISTRATION</p>
         <h2 className="text-[22px] font-black text-white tracking-tight mb-1">관심고객 등록</h2>
         <p className="text-white/50 text-[12px] mb-5">등록해 주시면 신속하고 친절하게 안내해 드립니다.</p>
@@ -178,7 +178,7 @@ export default function Home() {
 
       {/* ── 오시는 길 ── */}
       <section className="w-full bg-white">
-        <div className="px-4 pt-10 pb-5">
+        <div className="px-6 pt-10 pb-5">
           <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">LOCATION</p>
           <div className="flex flex-col divide-y divide-gray-100">
             {[
@@ -198,7 +198,7 @@ export default function Home() {
           </div>
         </div>
         {/* 오시는길 지도 */}
-        <div className="px-4 mt-4">
+        <div className="px-6 mt-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block rounded-lg" />
         </div>

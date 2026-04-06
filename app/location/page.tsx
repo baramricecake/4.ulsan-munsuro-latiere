@@ -6,25 +6,25 @@ export default function LocationPage() {
       <SubVisual title="입지환경" sub="LOCATION" />
 
       {/* 타이틀 텍스트 이미지 */}
-      <div className="px-4 py-4 bg-white">
+      <div className="px-6 py-4 bg-white">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/img/location/title.jpg" alt="울산 최고의 입지" className="w-full h-auto block rounded-lg" />
       </div>
 
       {/* 트램 노선 지도 */}
-      <div className="px-4 py-4">
+      <div className="px-6 py-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/img/location/map.jpg" alt="트램 노선도" className="w-full h-auto block rounded-lg" />
       </div>
 
       {/* 프리미엄 입지 카드 */}
-      <div className="px-4 py-4 bg-white">
+      <div className="px-6 py-4 bg-white">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/img/location/premium.jpg" alt="프리미엄 입지" className="w-full h-auto block rounded-lg" />
       </div>
 
       {/* 주소 정보 */}
-      <div className="px-4 py-8 bg-white">
+      <div className="px-6 py-8 bg-white">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">ADDRESS</p>
         <div className="flex flex-col divide-y divide-gray-100">
           {[
