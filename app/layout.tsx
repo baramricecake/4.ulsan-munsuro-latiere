@@ -35,15 +35,13 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-[#e8eaed] font-[family-name:var(--font-geist-sans)] flex flex-col items-center w-full`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white font-[family-name:var(--font-geist-sans)] flex flex-col w-full`}
         suppressHydrationWarning
       >
         <Header />
         <FloatingBanner />
-        <div className="w-full flex-grow flex flex-col items-center">
-          <div className="w-full max-w-[480px] mx-auto bg-white min-h-screen shadow-2xl">
-            {children}
-          </div>
+        <div className="w-full flex-grow flex flex-col">
+          {children}
         </div>
         <Footer />
       </body>
