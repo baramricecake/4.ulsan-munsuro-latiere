@@ -4,13 +4,15 @@ export default function BusinessPage() {
   return (
     <div className="w-full flex flex-col pb-24">
       <SubVisual title="사업안내" sub="BUSINESS OVERVIEW" />
-      {/* 사업개요 이미지 - 여백 없이 꽉 채움 */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/img/business/overview.jpg"
-        alt="문수로 라티에르 673 사업개요"
-        className="w-full h-auto block"
-      />
+      {/* 사업개요 이미지 */}
+      <div className="px-4 py-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/img/business/overview.jpg"
+          alt="문수로 라티에르 673 사업개요"
+          className="w-full h-auto block rounded-lg"
+        />
+      </div>
       {/* 주요 정보 카드 */}
       <div className="px-4 py-10 bg-white">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-5">PROJECT INFO</p>

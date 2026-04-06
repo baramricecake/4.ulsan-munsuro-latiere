@@ -197,9 +197,11 @@ export default function Home() {
             ))}
           </div>
         </div>
-        {/* 오시는길 지도 - 여백 없이 full width */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block mt-4" />
+        {/* 오시는길 지도 */}
+        <div className="px-4 mt-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block rounded-lg" />
+        </div>
         <div className="h-20" />
       </section>
 
