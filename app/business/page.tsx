@@ -12,7 +12,7 @@ export default function BusinessPage() {
         className="w-full h-auto block"
       />
       {/* 주요 정보 카드 */}
-      <div className="px-5 py-10 bg-white">
+      <div className="px-4 py-10 bg-white">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-5">PROJECT INFO</p>
         <div className="flex flex-col divide-y divide-gray-100">
           {[

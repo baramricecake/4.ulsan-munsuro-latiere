@@ -6,7 +6,7 @@ interface SubVisualProps {
 export default function SubVisual({ title, sub }: SubVisualProps) {
   return (
     <div
-      className="w-full relative overflow-hidden px-6 pt-10 pb-8"
+      className="w-full relative overflow-hidden px-4 pt-10 pb-8"
       style={{ background: 'linear-gradient(135deg, #1C2E50 0%, #0d1a30 100%)' }}
     >
       {/* 격자 배경 */}

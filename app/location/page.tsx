@@ -18,7 +18,7 @@ export default function LocationPage() {
       <img src="/img/location/premium.jpg" alt="프리미엄 입지" className="w-full h-auto block bg-white" />
 
       {/* 주소 정보 */}
-      <div className="px-5 py-8 bg-white">
+      <div className="px-4 py-8 bg-white">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">ADDRESS</p>
         <div className="flex flex-col divide-y divide-gray-100">
           {[

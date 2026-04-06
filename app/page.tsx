@@ -48,8 +48,11 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col">
 
-      {/* ── 히어로 슬라이더 ── */}
-      <section className="w-full relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
+      {/* ── 히어로: 헤더 제외 정확히 한 화면 ── */}
+      <section
+        className="w-full relative overflow-hidden"
+        style={{ height: 'calc(100dvh - 56px)' }}
+      >
         {heroSlides.map((slide, i) => (
           <div
             key={i}
@@ -59,48 +62,55 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" />
             <div
-              className="absolute inset-0 flex flex-col justify-end px-5 pb-10"
-              style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }}
+              className="absolute inset-0 flex flex-col justify-end px-4 pb-16"
+              style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }}
             >
-              <p className="text-white/70 text-[10px] tracking-[0.2em] font-medium mb-1.5">{slide.label}</p>
-              <h1 className="text-white text-[22px] font-black leading-tight tracking-tight whitespace-pre-line">
+              <p className="text-white/70 text-[11px] tracking-[0.2em] font-medium mb-2">{slide.label}</p>
+              <h1 className="text-white text-[26px] font-black leading-tight tracking-tight whitespace-pre-line">
                 {slide.title}
               </h1>
+              <a
+                href="tel:1811-0432"
+                className="mt-5 self-start flex items-center gap-2 bg-[#B89A5A] text-white px-5 py-2.5 rounded-full text-sm font-bold"
+              >
+                <Phone className="w-4 h-4" />
+                1811-0432
+              </a>
             </div>
           </div>
         ))}
 
-        {/* 슬라이드 버튼 */}
-        <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition backdrop-blur-sm">
-          <ChevronLeft className="w-4 h-4" />
+        {/* 좌우 버튼 */}
+        <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/20 text-white flex items-center justify-center hover:bg-black/40 transition backdrop-blur-sm">
+          <ChevronLeft className="w-5 h-5" />
         </button>
-        <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition backdrop-blur-sm">
-          <ChevronRight className="w-4 h-4" />
+        <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/20 text-white flex items-center justify-center hover:bg-black/40 transition backdrop-blur-sm">
+          <ChevronRight className="w-5 h-5" />
         </button>
 
-        {/* 도트 */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+        {/* 도트 인디케이터 */}
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
           {heroSlides.map((_, i) => (
             <button key={i} onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all ${i === current ? 'w-5 h-1.5 bg-[#B89A5A]' : 'w-1.5 h-1.5 bg-white/50'}`}
+              className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-[#B89A5A]' : 'w-1.5 h-1.5 bg-white/50'}`}
             />
           ))}
         </div>
       </section>
 
       {/* ── 공지 띠 ── */}
-      <div className="w-full bg-[#1C2E50] text-white py-2.5 px-4 flex items-center gap-2 text-[10px] font-bold tracking-widest overflow-hidden">
+      <div className="w-full bg-[#1C2E50] text-white py-2.5 flex items-center gap-2 text-[11px] font-bold tracking-widest overflow-hidden px-4">
         <span className="w-1.5 h-1.5 rounded-full bg-[#B89A5A] animate-pulse flex-shrink-0" />
         <span className="whitespace-nowrap">트램1호선 공업로터리역 초역세권 · 계약금 5% · 1차 500만원</span>
       </div>
 
       {/* ── 브랜드 소개 ── */}
-      <section className="w-full bg-white px-6 py-12 text-center">
+      <section className="w-full bg-white px-4 py-12 text-center">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-3">MUNSURO LATIERE 673</p>
-        <h2 className="text-[20px] font-black text-[#1C2E50] leading-snug tracking-tight mb-4">
+        <h2 className="text-[22px] font-black text-[#1C2E50] leading-snug tracking-tight mb-4">
           울산을 새로삶
         </h2>
-        <p className="text-gray-500 text-[13px] leading-[1.9]">
+        <p className="text-gray-500 text-[13px] leading-[2]">
           울산의 영원한 중심, 공업탑 로터리.<br />
           명문 교육 입지에서 울산 1호 트램의<br />
           변하지 않을 최고의 중심에서<br />
@@ -110,7 +120,7 @@ export default function Home() {
       </section>
 
       {/* ── 공급 현황 ── */}
-      <section className="w-full bg-[#f8f7f5] px-5 py-8">
+      <section className="w-full bg-[#f8f7f5] px-4 py-8">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">SUPPLY INFO</p>
         <div className="grid grid-cols-2 gap-px rounded-lg overflow-hidden border border-gray-200">
           {[
@@ -120,8 +130,7 @@ export default function Home() {
             { label: '계약금', value: '5%', sub: '1차 500만원' },
             { label: '대지위치', value: '울산 남구 신정동', full: true },
           ].map((item) => (
-            <div key={item.label}
-              className={`bg-white px-4 py-4 ${item.full ? 'col-span-2' : ''}`}>
+            <div key={item.label} className={`bg-white px-4 py-4 ${item.full ? 'col-span-2' : ''}`}>
               <p className="text-[10px] text-gray-400 font-medium mb-0.5">{item.label}</p>
               <p className="text-sm font-black text-[#1C2E50] leading-tight">{item.value}</p>
               {item.sub && <p className="text-[10px] text-gray-400 mt-0.5">{item.sub}</p>}
@@ -131,9 +140,9 @@ export default function Home() {
       </section>
 
       {/* ── 7대 프리미엄 ── */}
-      <section className="w-full bg-white px-5 py-12">
+      <section className="w-full bg-white px-4 py-12">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">PREMIUM</p>
-        <h2 className="text-[18px] font-black text-[#1C2E50] tracking-tight mb-8 leading-snug">
+        <h2 className="text-[20px] font-black text-[#1C2E50] tracking-tight mb-8 leading-snug">
           옥신정의 진정한 프리미엄을<br />모두 담았습니다
         </h2>
         <div className="flex flex-col divide-y divide-gray-100">
@@ -151,10 +160,10 @@ export default function Home() {
       </section>
 
       {/* ── 관심고객 등록 (메인 CTA) ── */}
-      <section id="form" className="w-full bg-[#1C2E50] px-5 py-12">
+      <section id="form" className="w-full bg-[#1C2E50] px-4 py-12">
         <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">REGISTRATION</p>
-        <h2 className="text-[20px] font-black text-white tracking-tight mb-1">관심고객 등록</h2>
-        <p className="text-white/50 text-xs mb-5">등록해 주시면 신속하고 친절하게 안내해 드립니다.</p>
+        <h2 className="text-[22px] font-black text-white tracking-tight mb-1">관심고객 등록</h2>
+        <p className="text-white/50 text-[12px] mb-5">등록해 주시면 신속하고 친절하게 안내해 드립니다.</p>
         <a
           href="tel:1811-0432"
           className="w-full flex items-center justify-center gap-2 bg-[#B89A5A] text-white py-4 rounded-lg font-black text-[15px] mb-5 hover:bg-[#a38448] transition-colors active:scale-[0.98]"
@@ -162,14 +171,14 @@ export default function Home() {
           <Phone className="w-4 h-4" />
           1811-0432 전화 상담
         </a>
-        <div className="bg-white rounded-xl p-5">
+        <div className="bg-white rounded-xl p-4">
           <ContactForm />
         </div>
       </section>
 
       {/* ── 오시는 길 ── */}
       <section className="w-full bg-white">
-        <div className="px-5 pt-10 pb-5">
+        <div className="px-4 pt-10 pb-5">
           <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">LOCATION</p>
           <div className="flex flex-col divide-y divide-gray-100">
             {[
@@ -188,9 +197,9 @@ export default function Home() {
             ))}
           </div>
         </div>
-        {/* 오시는길 지도 이미지 */}
+        {/* 오시는길 지도 - 여백 없이 full width */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block" />
+        <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block mt-4" />
         <div className="h-20" />
       </section>
 
