@@ -18,41 +18,30 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full bg-white shadow-sm flex justify-center sticky top-0 z-50">
-        <div className="w-full max-w-[768px] px-4 h-14 flex items-center justify-between">
+      <header className="w-full bg-white border-b border-gray-100 flex justify-center sticky top-0 z-50">
+        <div className="w-full max-w-[768px] px-4 h-[56px] flex items-center justify-between">
+
           {/* 로고 */}
-          <Link href="/" className="flex flex-col leading-none" onClick={() => setMenuOpen(false)}>
-            <span className="text-[#1C2E50] font-black text-sm tracking-tight">문수로</span>
-            <span className="text-sm font-black tracking-tight">
-              <span className="text-[#B89A5A]">라티에르</span>
-              <span className="text-[#1C2E50]"> 673</span>
-            </span>
+          <Link href="/" onClick={() => setMenuOpen(false)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/site/logo-dark.png"
+              alt="문수로 라티에르 673"
+              className="h-[28px] w-auto object-contain"
+            />
           </Link>
 
-          {/* 데스크톱 nav */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-bold">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`hover:text-[#B89A5A] transition-colors ${pathname === item.path ? 'text-[#B89A5A]' : 'text-[#1C2E50]'}`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* 우측: 전화 + 햄버거 */}
+          {/* 우측: 전화버튼 + 햄버거 */}
           <div className="flex items-center gap-2">
             <a
               href="tel:1811-0432"
-              className="flex items-center gap-1.5 bg-[#1C2E50] text-white px-3 py-2 rounded-full text-xs font-bold hover:bg-[#B89A5A] transition"
+              className="flex items-center gap-1.5 bg-[#1C2E50] text-white px-3 py-1.5 rounded-full text-[11px] font-bold hover:bg-[#B89A5A] transition-colors"
             >
-              <Phone className="w-3.5 h-3.5" />
-              <span>1811-0432</span>
+              <Phone className="w-3 h-3" />
+              1811-0432
             </a>
             <button
-              className="md:hidden p-2 text-[#1C2E50]"
+              className="p-1.5 text-[#1C2E50]"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="메뉴"
             >
@@ -62,17 +51,17 @@ export default function Header() {
         </div>
       </header>
 
-      {/* 모바일 드로어 메뉴 */}
+      {/* 모바일 풀스크린 메뉴 */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 flex">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setMenuOpen(false)} />
-          <nav className="relative ml-auto w-64 bg-white h-full shadow-2xl flex flex-col pt-16 px-6 gap-2">
+        <div className="fixed inset-0 z-40 flex flex-col" style={{ top: 56 }}>
+          <div className="absolute inset-0 bg-white" onClick={() => setMenuOpen(false)} />
+          <nav className="relative flex flex-col w-full max-w-[768px] mx-auto px-6 pt-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
                 onClick={() => setMenuOpen(false)}
-                className={`py-3 border-b border-gray-100 font-bold text-base transition-colors ${
+                className={`py-4 border-b border-gray-100 font-bold text-[15px] tracking-tight transition-colors ${
                   pathname === item.path ? 'text-[#B89A5A]' : 'text-[#1C2E50]'
                 }`}
               >
@@ -81,10 +70,10 @@ export default function Header() {
             ))}
             <a
               href="tel:1811-0432"
-              className="mt-4 flex items-center justify-center gap-2 bg-[#1C2E50] text-white py-3 rounded-full font-bold text-base hover:bg-[#B89A5A] transition"
+              className="mt-6 flex items-center justify-center gap-2 bg-[#1C2E50] text-white py-4 rounded-xl font-bold text-base hover:bg-[#B89A5A] transition-colors"
             >
               <Phone className="w-4 h-4" />
-              1811-0432
+              1811-0432 전화 상담
             </a>
           </nav>
         </div>
