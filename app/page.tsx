@@ -258,9 +258,11 @@ export default function Home() {
             ))}
           </div>
         </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block" />
-        <div className="h-24" />
+        <div className="max-w-[1200px] mx-auto px-6 pb-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block rounded-2xl shadow-md" />
+        </div>
+        <div className="h-16" />
       </section>
 
     </div>
