@@ -80,6 +80,13 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col">
 
+      {/* SEO 키워드 텍스트 (화면에 보이지 않음) */}
+      <p className="sr-only">
+        문수로 라티에르 모델하우스, 울산 라티에르673, 문수로라티에르673, 울산 라티에르 모델하우스,
+        울산 신정동 분양, 울산 남구 분양 아파트, 라티에르673 모델하우스, 공업로터리역 초역세권,
+        울산 트램역세권 아파트, 문수로라티에르 분양 문의 1811-0432
+      </p>
+
       {/* ── 히어로: 풀스크린 ── */}
       <section
         className="w-full relative overflow-hidden"
