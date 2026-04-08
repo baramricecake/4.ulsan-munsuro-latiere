@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ulsan-munsuro-latiere.pages.dev/sitemap.xml
