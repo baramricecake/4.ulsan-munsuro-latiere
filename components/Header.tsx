@@ -18,9 +18,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full bg-[#1C2E50] flex justify-center sticky top-0 z-50">
-        <div className="w-full max-w-[768px] px-4 h-[56px] flex items-center justify-between">
-          {/* 흰색 로고 */}
+      <header className="w-full bg-[#1C2E50] sticky top-0 z-50">
+        <div className="max-w-[1200px] mx-auto px-6 h-[56px] flex items-center justify-between">
+          {/* 로고 */}
           <Link href="/" onClick={() => setMenuOpen(false)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -30,7 +30,22 @@ export default function Header() {
             />
           </Link>
 
-          {/* 우측: 전화 + 햄버거 */}
+          {/* PC: 가로 메뉴 */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`text-[13px] font-bold transition-colors ${
+                  pathname === item.path ? 'text-[#B89A5A]' : 'text-white/70 hover:text-white'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* 우측: 전화 + 햄버거(모바일) */}
           <div className="flex items-center gap-2">
             <a
               href="tel:1811-0432"
@@ -40,7 +55,7 @@ export default function Header() {
               1811-0432
             </a>
             <button
-              className="p-1.5 text-white/80 hover:text-white"
+              className="md:hidden p-1.5 text-white/80 hover:text-white"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="메뉴"
             >
@@ -50,9 +65,9 @@ export default function Header() {
         </div>
       </header>
 
-      {/* 드로어 메뉴 */}
+      {/* 모바일 드로어 메뉴 */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40" style={{ top: 56 }}>
+        <div className="fixed inset-0 z-40 md:hidden" style={{ top: 56 }}>
           <div className="absolute inset-0 bg-black/40" onClick={() => setMenuOpen(false)} />
           <div className="absolute top-0 right-0 w-[240px] h-full bg-[#1C2E50] flex flex-col px-6 pt-6">
             {navItems.map((item) => (

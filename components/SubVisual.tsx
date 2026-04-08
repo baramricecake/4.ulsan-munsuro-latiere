@@ -6,7 +6,7 @@ interface SubVisualProps {
 export default function SubVisual({ title, sub }: SubVisualProps) {
   return (
     <div
-      className="w-full relative overflow-hidden px-6 pt-10 pb-8"
+      className="w-full relative overflow-hidden pt-10 pb-8"
       style={{ background: 'linear-gradient(135deg, #1C2E50 0%, #0d1a30 100%)' }}
     >
       {/* 격자 배경 */}
@@ -18,7 +18,7 @@ export default function SubVisual({ title, sub }: SubVisualProps) {
           backgroundSize: '30px 30px',
         }}
       />
-      <div className="relative">
+      <div className="relative max-w-[1200px] mx-auto px-6">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/img/logo-light.png" alt="" className="h-[14px] w-auto object-contain mb-5 opacity-50" />
         {sub && <p className="text-[9px] tracking-[0.25em] text-[#B89A5A] font-bold mb-2">{sub}</p>}

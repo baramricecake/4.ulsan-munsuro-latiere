@@ -19,8 +19,8 @@ export default function Footer() {
       </div>
 
       {/* 하단 고정 CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
-        <div className="w-full max-w-[768px] flex pointer-events-auto shadow-[0_-2px_20px_rgba(0,0,0,0.2)]">
+      <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
+        <div className="w-full flex pointer-events-auto shadow-[0_-2px_20px_rgba(0,0,0,0.2)]">
           <a
             href="tel:1811-0432"
             className="flex-1 bg-white text-[#1C2E50] flex items-center justify-center gap-1.5 font-bold text-[13px] h-14 border-r border-gray-100 active:bg-gray-50 transition"

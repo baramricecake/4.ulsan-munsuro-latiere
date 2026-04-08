@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col">
 
-      {/* ── 히어로: 헤더 제외 정확히 한 화면 ── */}
+      {/* ── 히어로: 풀스크린 ── */}
       <section
         className="w-full relative overflow-hidden"
         style={{ height: 'calc(100dvh - 56px)' }}
@@ -62,20 +62,22 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" />
             <div
-              className="absolute inset-0 flex flex-col justify-end px-4 pb-16"
+              className="absolute inset-0 flex flex-col justify-end pb-16"
               style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }}
             >
-              <p className="text-white/70 text-[11px] tracking-[0.2em] font-medium mb-2">{slide.label}</p>
-              <h1 className="text-white text-[26px] font-black leading-tight tracking-tight whitespace-pre-line">
-                {slide.title}
-              </h1>
-              <a
-                href="tel:1811-0432"
-                className="mt-5 self-start flex items-center gap-2 bg-[#B89A5A] text-white px-5 py-2.5 rounded-full text-sm font-bold"
-              >
-                <Phone className="w-4 h-4" />
-                1811-0432
-              </a>
+              <div className="max-w-[1200px] mx-auto px-6 w-full">
+                <p className="text-white/70 text-[11px] tracking-[0.2em] font-medium mb-2">{slide.label}</p>
+                <h1 className="text-white text-[26px] font-black leading-tight tracking-tight whitespace-pre-line">
+                  {slide.title}
+                </h1>
+                <a
+                  href="tel:1811-0432"
+                  className="mt-5 self-start inline-flex items-center gap-2 bg-[#B89A5A] text-white px-5 py-2.5 rounded-full text-sm font-bold"
+                >
+                  <Phone className="w-4 h-4" />
+                  1811-0432
+                </a>
+              </div>
             </div>
           </div>
         ))}
@@ -99,86 +101,96 @@ export default function Home() {
       </section>
 
       {/* ── 공지 띠 ── */}
-      <div className="w-full bg-[#1C2E50] text-white py-2.5 flex items-center gap-2 text-[11px] font-bold tracking-widest overflow-hidden px-6">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#B89A5A] animate-pulse flex-shrink-0" />
-        <span className="whitespace-nowrap">트램1호선 공업로터리역 초역세권 · 계약금 5% · 1차 500만원</span>
+      <div className="w-full bg-[#1C2E50] text-white py-2.5 flex items-center gap-2 text-[11px] font-bold tracking-widest overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6 flex items-center gap-2 w-full">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#B89A5A] animate-pulse flex-shrink-0" />
+          <span className="whitespace-nowrap">트램1호선 공업로터리역 초역세권 · 계약금 5% · 1차 500만원</span>
+        </div>
       </div>
 
       {/* ── 브랜드 소개 ── */}
-      <section className="w-full bg-white px-6 py-12 text-center">
-        <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-3">MUNSURO LATIERE 673</p>
-        <h2 className="text-[22px] font-black text-[#1C2E50] leading-snug tracking-tight mb-4">
-          울산을 새로삶
-        </h2>
-        <p className="text-gray-500 text-[13px] leading-[2]">
-          울산의 영원한 중심, 공업탑 로터리.<br />
-          명문 교육 입지에서 울산 1호 트램의<br />
-          변하지 않을 최고의 중심에서<br />
-          울산의 가치를 더 크게 높입니다.
-        </p>
-        <div className="w-8 h-px bg-[#B89A5A] mx-auto mt-8" />
+      <section className="w-full bg-white py-12">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-3">MUNSURO LATIERE 673</p>
+          <h2 className="text-[22px] font-black text-[#1C2E50] leading-snug tracking-tight mb-4">
+            울산을 새로삶
+          </h2>
+          <p className="text-gray-500 text-[13px] leading-[2]">
+            울산의 영원한 중심, 공업탑 로터리.<br />
+            명문 교육 입지에서 울산 1호 트램의<br />
+            변하지 않을 최고의 중심에서<br />
+            울산의 가치를 더 크게 높입니다.
+          </p>
+          <div className="w-8 h-px bg-[#B89A5A] mx-auto mt-8" />
+        </div>
       </section>
 
       {/* ── 공급 현황 ── */}
-      <section className="w-full bg-[#f8f7f5] px-6 py-8">
-        <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">SUPPLY INFO</p>
-        <div className="grid grid-cols-2 gap-px rounded-lg overflow-hidden border border-gray-200">
-          {[
-            { label: '단지명', value: '문수로 라티에르 673', full: true },
-            { label: '아파트', value: '199세대', sub: '84A·B·C / 104㎡' },
-            { label: '오피스텔', value: '35실', sub: '110㎡' },
-            { label: '계약금', value: '5%', sub: '1차 500만원' },
-            { label: '대지위치', value: '울산 남구 신정동', full: true },
-          ].map((item) => (
-            <div key={item.label} className={`bg-white px-4 py-4 ${item.full ? 'col-span-2' : ''}`}>
-              <p className="text-[10px] text-gray-400 font-medium mb-0.5">{item.label}</p>
-              <p className="text-sm font-black text-[#1C2E50] leading-tight">{item.value}</p>
-              {item.sub && <p className="text-[10px] text-gray-400 mt-0.5">{item.sub}</p>}
-            </div>
-          ))}
+      <section className="w-full bg-[#f8f7f5] py-8">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">SUPPLY INFO</p>
+          <div className="grid grid-cols-2 gap-px rounded-lg overflow-hidden border border-gray-200">
+            {[
+              { label: '단지명', value: '문수로 라티에르 673', full: true },
+              { label: '아파트', value: '199세대', sub: '84A·B·C / 104㎡' },
+              { label: '오피스텔', value: '35실', sub: '110㎡' },
+              { label: '계약금', value: '5%', sub: '1차 500만원' },
+              { label: '대지위치', value: '울산 남구 신정동', full: true },
+            ].map((item) => (
+              <div key={item.label} className={`bg-white px-4 py-4 ${item.full ? 'col-span-2' : ''}`}>
+                <p className="text-[10px] text-gray-400 font-medium mb-0.5">{item.label}</p>
+                <p className="text-sm font-black text-[#1C2E50] leading-tight">{item.value}</p>
+                {item.sub && <p className="text-[10px] text-gray-400 mt-0.5">{item.sub}</p>}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── 7대 프리미엄 ── */}
-      <section className="w-full bg-white px-6 py-12">
-        <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">PREMIUM</p>
-        <h2 className="text-[20px] font-black text-[#1C2E50] tracking-tight mb-8 leading-snug">
-          옥신정의 진정한 프리미엄을<br />모두 담았습니다
-        </h2>
-        <div className="flex flex-col divide-y divide-gray-100">
-          {premiums.map((p) => (
-            <div key={p.num} className="py-5 flex items-start gap-4">
-              <span className="text-[#B89A5A] font-black text-xs tracking-widest flex-shrink-0 w-6">{p.num}</span>
-              <div>
-                <p className="text-[9px] tracking-[0.2em] text-gray-400 font-bold mb-0.5">{p.eng}</p>
-                <h3 className="font-black text-[#1C2E50] text-[14px] mb-1">{p.title}</h3>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{p.desc}</p>
+      <section className="w-full bg-white py-12">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">PREMIUM</p>
+          <h2 className="text-[20px] font-black text-[#1C2E50] tracking-tight mb-8 leading-snug">
+            옥신정의 진정한 프리미엄을<br />모두 담았습니다
+          </h2>
+          <div className="flex flex-col divide-y divide-gray-100">
+            {premiums.map((p) => (
+              <div key={p.num} className="py-5 flex items-start gap-4">
+                <span className="text-[#B89A5A] font-black text-xs tracking-widest flex-shrink-0 w-6">{p.num}</span>
+                <div>
+                  <p className="text-[9px] tracking-[0.2em] text-gray-400 font-bold mb-0.5">{p.eng}</p>
+                  <h3 className="font-black text-[#1C2E50] text-[14px] mb-1">{p.title}</h3>
+                  <p className="text-[12px] text-gray-500 leading-relaxed">{p.desc}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── 관심고객 등록 (메인 CTA) ── */}
-      <section id="form" className="w-full bg-[#1C2E50] px-6 py-12">
-        <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">REGISTRATION</p>
-        <h2 className="text-[22px] font-black text-white tracking-tight mb-1">관심고객 등록</h2>
-        <p className="text-white/50 text-[12px] mb-5">등록해 주시면 신속하고 친절하게 안내해 드립니다.</p>
-        <a
-          href="tel:1811-0432"
-          className="w-full flex items-center justify-center gap-2 bg-[#B89A5A] text-white py-4 rounded-lg font-black text-[15px] mb-5 hover:bg-[#a38448] transition-colors active:scale-[0.98]"
-        >
-          <Phone className="w-4 h-4" />
-          1811-0432 전화 상담
-        </a>
-        <div className="bg-white rounded-xl p-4">
-          <ContactForm />
+      <section id="form" className="w-full bg-[#1C2E50] py-12">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">REGISTRATION</p>
+          <h2 className="text-[22px] font-black text-white tracking-tight mb-1">관심고객 등록</h2>
+          <p className="text-white/50 text-[12px] mb-5">등록해 주시면 신속하고 친절하게 안내해 드립니다.</p>
+          <a
+            href="tel:1811-0432"
+            className="w-full flex items-center justify-center gap-2 bg-[#B89A5A] text-white py-4 rounded-lg font-black text-[15px] mb-5 hover:bg-[#a38448] transition-colors active:scale-[0.98]"
+          >
+            <Phone className="w-4 h-4" />
+            1811-0432 전화 상담
+          </a>
+          <div className="bg-white rounded-xl p-4">
+            <ContactForm />
+          </div>
         </div>
       </section>
 
       {/* ── 오시는 길 ── */}
       <section className="w-full bg-white">
-        <div className="px-6 pt-10 pb-5">
+        <div className="max-w-[1200px] mx-auto px-6 pt-10 pb-5">
           <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">LOCATION</p>
           <div className="flex flex-col divide-y divide-gray-100">
             {[
@@ -197,11 +209,9 @@ export default function Home() {
             ))}
           </div>
         </div>
-        {/* 오시는길 지도 */}
-        <div className="px-6 mt-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block rounded-lg" />
-        </div>
+        {/* 오시는길 지도 - 풀스크린 */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block mt-4" />
         <div className="h-20" />
       </section>
 
