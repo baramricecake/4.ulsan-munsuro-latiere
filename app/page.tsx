@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import ContactForm from '../components/ContactForm';
 import { Phone, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -34,6 +34,32 @@ const premiums = [
   { num: '07', title: '스마트 금융솔루션', eng: 'SMART FINANCE', desc: '계약금 5%, 1차 500만원. 합리적인 조건으로 내 집 마련.' },
 ];
 
+const supplyInfo = [
+  { label: '단지명', value: '문수로 라티에르 673' },
+  { label: '대지위치', value: '울산광역시 남구 신정동 673-1번지 일원' },
+  { label: '아파트', value: '199세대', sub: '84A·B·C㎡ / 104㎡' },
+  { label: '오피스텔', value: '35실', sub: '110㎡' },
+  { label: '계약금', value: '5%', sub: '1차 500만원' },
+  { label: '시행사', value: '(주)구전개발', sub: '792-81-02085' },
+  { label: '모델하우스', value: '울산 남구 신정동 1268-2' },
+  { label: '문의전화', value: '1811-0432', isPhone: true },
+];
+
+function useFadeUp() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('is-visible'); } },
+      { threshold: 0.08 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
+
 export default function Home() {
   const [current, setCurrent] = useState(0);
 
@@ -44,6 +70,12 @@ export default function Home() {
     const t = setInterval(next, 4500);
     return () => clearInterval(t);
   }, [next]);
+
+  const brandRef = useFadeUp();
+  const supplyRef = useFadeUp();
+  const premiumTitleRef = useFadeUp();
+  const formRef = useFadeUp();
+  const locationRef = useFadeUp();
 
   return (
     <div className="w-full flex flex-col">
@@ -63,16 +95,16 @@ export default function Home() {
             <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" />
             <div
               className="absolute inset-0 flex flex-col justify-end pb-16"
-              style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }}
+              style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)' }}
             >
               <div className="max-w-[1200px] mx-auto px-6 w-full">
-                <p className="text-white/70 text-[11px] tracking-[0.2em] font-medium mb-2">{slide.label}</p>
-                <h1 className="text-white text-[26px] font-black leading-tight tracking-tight whitespace-pre-line">
+                <p className="text-white/70 text-[11px] tracking-[0.2em] font-medium mb-3">{slide.label}</p>
+                <h1 className="text-white text-[28px] md:text-[36px] font-black leading-tight tracking-tight whitespace-pre-line">
                   {slide.title}
                 </h1>
                 <a
                   href="tel:1811-0432"
-                  className="mt-5 self-start inline-flex items-center gap-2 bg-[#B89A5A] text-white px-5 py-2.5 rounded-full text-sm font-bold"
+                  className="mt-6 self-start inline-flex items-center gap-2 bg-[#B89A5A] text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-[#a38448] transition-colors"
                 >
                   <Phone className="w-4 h-4" />
                   1811-0432
@@ -82,7 +114,6 @@ export default function Home() {
           </div>
         ))}
 
-        {/* 좌우 버튼 */}
         <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/20 text-white flex items-center justify-center hover:bg-black/40 transition backdrop-blur-sm">
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -90,7 +121,6 @@ export default function Home() {
           <ChevronRight className="w-5 h-5" />
         </button>
 
-        {/* 도트 인디케이터 */}
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
           {heroSlides.map((_, i) => (
             <button key={i} onClick={() => setCurrent(i)}
@@ -101,46 +131,54 @@ export default function Home() {
       </section>
 
       {/* ── 공지 띠 ── */}
-      <div className="w-full bg-[#1C2E50] text-white py-2.5 flex items-center gap-2 text-[11px] font-bold tracking-widest overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-6 flex items-center gap-2 w-full">
+      <div className="w-full bg-[#1C2E50] text-white py-2.5 overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6 flex items-center gap-2 text-[11px] font-bold tracking-widest">
           <span className="w-1.5 h-1.5 rounded-full bg-[#B89A5A] animate-pulse flex-shrink-0" />
           <span className="whitespace-nowrap">트램1호선 공업로터리역 초역세권 · 계약금 5% · 1차 500만원</span>
         </div>
       </div>
 
       {/* ── 브랜드 소개 ── */}
-      <section className="w-full bg-white py-12">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-3">MUNSURO LATIERE 673</p>
-          <h2 className="text-[22px] font-black text-[#1C2E50] leading-snug tracking-tight mb-4">
+      <section className="w-full bg-white py-16">
+        <div ref={brandRef} className="fade-up max-w-[1200px] mx-auto px-6 text-center">
+          <p className="text-[10px] tracking-[0.4em] text-[#B89A5A] font-bold mb-4">MUNSURO LATIERE 673</p>
+          <h2 className="text-[28px] md:text-[36px] font-black text-[#1C2E50] leading-snug tracking-tight mb-6">
             울산을 새로삶
           </h2>
-          <p className="text-gray-500 text-[13px] leading-[2]">
+          <p className="text-gray-500 text-[15px] md:text-[16px] leading-[2.2]">
             울산의 영원한 중심, 공업탑 로터리.<br />
             명문 교육 입지에서 울산 1호 트램의<br />
             변하지 않을 최고의 중심에서<br />
             울산의 가치를 더 크게 높입니다.
           </p>
-          <div className="w-8 h-px bg-[#B89A5A] mx-auto mt-8" />
+          <div className="w-10 h-[2px] bg-[#B89A5A] mx-auto mt-10" />
         </div>
       </section>
 
       {/* ── 공급 현황 ── */}
-      <section className="w-full bg-[#f8f7f5] py-8">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">SUPPLY INFO</p>
-          <div className="grid grid-cols-2 gap-px rounded-lg overflow-hidden border border-gray-200">
-            {[
-              { label: '단지명', value: '문수로 라티에르 673', full: true },
-              { label: '아파트', value: '199세대', sub: '84A·B·C / 104㎡' },
-              { label: '오피스텔', value: '35실', sub: '110㎡' },
-              { label: '계약금', value: '5%', sub: '1차 500만원' },
-              { label: '대지위치', value: '울산 남구 신정동', full: true },
-            ].map((item) => (
-              <div key={item.label} className={`bg-white px-4 py-4 ${item.full ? 'col-span-2' : ''}`}>
-                <p className="text-[10px] text-gray-400 font-medium mb-0.5">{item.label}</p>
-                <p className="text-sm font-black text-[#1C2E50] leading-tight">{item.value}</p>
-                {item.sub && <p className="text-[10px] text-gray-400 mt-0.5">{item.sub}</p>}
+      <section className="w-full bg-[#f8f7f5] py-12">
+        <div ref={supplyRef} className="fade-up max-w-[1200px] mx-auto px-6">
+          <p className="text-[10px] tracking-[0.4em] text-[#B89A5A] font-bold mb-2">SUPPLY INFO</p>
+          <h2 className="text-[22px] font-black text-[#1C2E50] tracking-tight mb-8">공급 현황</h2>
+          <div className="flex flex-col divide-y divide-gray-200">
+            {supplyInfo.map((row, idx) => (
+              <div key={row.label}
+                className={`flex gap-4 py-4 fade-up fade-up-delay-${Math.min(idx + 1, 4)}`}
+                ref={(el) => {
+                  if (!el) return;
+                  const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add('is-visible'); }, { threshold: 0.1 });
+                  obs.observe(el);
+                }}
+              >
+                <span className="text-[11px] text-gray-400 font-semibold w-24 flex-shrink-0 pt-0.5 tracking-wide">{row.label}</span>
+                <div>
+                  {row.isPhone ? (
+                    <a href="tel:1811-0432" className="text-[15px] font-black text-[#B89A5A]">{row.value}</a>
+                  ) : (
+                    <p className="text-[15px] font-black text-[#1C2E50] leading-snug">{row.value}</p>
+                  )}
+                  {row.sub && <p className="text-[11px] text-gray-400 mt-0.5">{row.sub}</p>}
+                </div>
               </div>
             ))}
           </div>
@@ -148,19 +186,29 @@ export default function Home() {
       </section>
 
       {/* ── 7대 프리미엄 ── */}
-      <section className="w-full bg-white py-12">
+      <section className="w-full bg-white py-14">
         <div className="max-w-[1200px] mx-auto px-6">
-          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">PREMIUM</p>
-          <h2 className="text-[20px] font-black text-[#1C2E50] tracking-tight mb-8 leading-snug">
-            옥신정의 진정한 프리미엄을<br />모두 담았습니다
-          </h2>
+          <div ref={premiumTitleRef} className="fade-up">
+            <p className="text-[10px] tracking-[0.4em] text-[#B89A5A] font-bold mb-2">PREMIUM</p>
+            <h2 className="text-[22px] font-black text-[#1C2E50] tracking-tight mb-10 leading-snug">
+              옥신정의 진정한 프리미엄을<br />모두 담았습니다
+            </h2>
+          </div>
           <div className="flex flex-col divide-y divide-gray-100">
-            {premiums.map((p) => (
-              <div key={p.num} className="py-5 flex items-start gap-4">
-                <span className="text-[#B89A5A] font-black text-xs tracking-widest flex-shrink-0 w-6">{p.num}</span>
-                <div>
+            {premiums.map((p, idx) => (
+              <div
+                key={p.num}
+                className={`premium-item py-5 flex items-start gap-5 rounded-lg px-2 -mx-2 fade-up fade-up-delay-${Math.min(idx + 1, 4)}`}
+                ref={(el) => {
+                  if (!el) return;
+                  const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add('is-visible'); }, { threshold: 0.1 });
+                  obs.observe(el);
+                }}
+              >
+                <span className="text-[#B89A5A] font-black text-xs tracking-widest flex-shrink-0 w-6 pt-0.5">{p.num}</span>
+                <div className="flex-1">
                   <p className="text-[9px] tracking-[0.2em] text-gray-400 font-bold mb-0.5">{p.eng}</p>
-                  <h3 className="font-black text-[#1C2E50] text-[14px] mb-1">{p.title}</h3>
+                  <h3 className="font-black text-[#1C2E50] text-[15px] mb-1">{p.title}</h3>
                   <p className="text-[12px] text-gray-500 leading-relaxed">{p.desc}</p>
                 </div>
               </div>
@@ -169,12 +217,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 관심고객 등록 (메인 CTA) ── */}
-      <section id="form" className="w-full bg-[#1C2E50] py-12">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-2">REGISTRATION</p>
-          <h2 className="text-[22px] font-black text-white tracking-tight mb-1">관심고객 등록</h2>
-          <p className="text-white/50 text-[12px] mb-5">등록해 주시면 신속하고 친절하게 안내해 드립니다.</p>
+      {/* ── 관심고객 등록 ── */}
+      <section id="form" className="w-full bg-[#1C2E50] py-14">
+        <div ref={formRef} className="fade-up max-w-[1200px] mx-auto px-6">
+          <p className="text-[10px] tracking-[0.4em] text-[#B89A5A] font-bold mb-2">REGISTRATION</p>
+          <h2 className="text-[24px] font-black text-white tracking-tight mb-1">관심고객 등록</h2>
+          <p className="text-white/50 text-[13px] mb-6">등록해 주시면 신속하고 친절하게 안내해 드립니다.</p>
           <a
             href="tel:1811-0432"
             className="w-full flex items-center justify-center gap-2 bg-[#B89A5A] text-white py-4 rounded-lg font-black text-[15px] mb-5 hover:bg-[#a38448] transition-colors active:scale-[0.98]"
@@ -182,7 +230,7 @@ export default function Home() {
             <Phone className="w-4 h-4" />
             1811-0432 전화 상담
           </a>
-          <div className="bg-white rounded-xl p-4">
+          <div className="bg-white rounded-xl p-5">
             <ContactForm />
           </div>
         </div>
@@ -190,29 +238,29 @@ export default function Home() {
 
       {/* ── 오시는 길 ── */}
       <section className="w-full bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 pt-10 pb-5">
-          <p className="text-[9px] tracking-[0.3em] text-[#B89A5A] font-bold mb-4">LOCATION</p>
+        <div ref={locationRef} className="fade-up max-w-[1200px] mx-auto px-6 pt-12 pb-6">
+          <p className="text-[10px] tracking-[0.4em] text-[#B89A5A] font-bold mb-2">LOCATION</p>
+          <h2 className="text-[22px] font-black text-[#1C2E50] tracking-tight mb-8">오시는 길</h2>
           <div className="flex flex-col divide-y divide-gray-100">
             {[
               { label: '사업지', value: '울산광역시 남구 신정동 673-1번지 일원' },
               { label: '모델하우스', value: '울산 남구 신정동 1268-2' },
               { label: '문의전화', value: '1811-0432', isPhone: true },
             ].map((row) => (
-              <div key={row.label} className="flex gap-4 py-3.5">
-                <span className="text-[11px] text-gray-400 font-medium w-20 flex-shrink-0 pt-0.5">{row.label}</span>
+              <div key={row.label} className="flex gap-4 py-4">
+                <span className="text-[11px] text-gray-400 font-semibold w-24 flex-shrink-0 pt-0.5">{row.label}</span>
                 {row.isPhone ? (
-                  <a href="tel:1811-0432" className="text-sm font-black text-[#B89A5A]">{row.value}</a>
+                  <a href="tel:1811-0432" className="text-[15px] font-black text-[#B89A5A]">{row.value}</a>
                 ) : (
-                  <span className="text-[13px] font-bold text-[#1C2E50] leading-snug">{row.value}</span>
+                  <span className="text-[14px] font-bold text-[#1C2E50] leading-snug">{row.value}</span>
                 )}
               </div>
             ))}
           </div>
         </div>
-        {/* 오시는길 지도 - 풀스크린 */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block mt-4" />
-        <div className="h-20" />
+        <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block" />
+        <div className="h-24" />
       </section>
 
     </div>

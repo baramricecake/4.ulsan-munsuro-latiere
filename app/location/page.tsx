@@ -6,7 +6,7 @@ export default function LocationPage() {
       <SubVisual title="입지환경" sub="LOCATION" />
 
       {/* 타이틀 텍스트 이미지 */}
-      <div className="w-full bg-white py-4">
+      <div className="w-full bg-white pt-8 pb-4">
         <div className="max-w-[1200px] mx-auto px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/img/location/title.jpg" alt="울산 최고의 입지" className="w-full h-auto block rounded-lg" />
@@ -14,7 +14,7 @@ export default function LocationPage() {
       </div>
 
       {/* 트램 노선 지도 */}
-      <div className="w-full py-4">
+      <div className="w-full pt-8 pb-4">
         <div className="max-w-[1200px] mx-auto px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/img/location/map.jpg" alt="트램 노선도" className="w-full h-auto block rounded-lg" />
@@ -22,7 +22,7 @@ export default function LocationPage() {
       </div>
 
       {/* 프리미엄 입지 카드 */}
-      <div className="w-full bg-white py-4">
+      <div className="w-full bg-white pt-8 pb-4">
         <div className="max-w-[1200px] mx-auto px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/img/location/premium.jpg" alt="프리미엄 입지" className="w-full h-auto block rounded-lg" />
