@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from 'react';
 import ContactForm from '../components/ContactForm';
+import PopupBanners from '../components/PopupBanners';
 import { Phone, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const heroSlides = [
@@ -79,6 +80,7 @@ export default function Home() {
 
   return (
     <div className="w-full flex flex-col">
+      <PopupBanners />
 
       {/* SEO 키워드 텍스트 (화면에 보이지 않음) */}
       <p className="sr-only">
@@ -162,35 +164,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 공급 현황 ── */}
-      <section className="w-full bg-[#f8f7f5] py-12">
-        <div ref={supplyRef} className="fade-up max-w-[1200px] mx-auto px-6">
-          <p className="text-[10px] tracking-[0.4em] text-[#B89A5A] font-bold mb-2">SUPPLY INFO</p>
-          <h2 className="text-[22px] font-black text-[#1C2E50] tracking-tight mb-8">공급 현황</h2>
-          <div className="flex flex-col divide-y divide-gray-200">
-            {supplyInfo.map((row, idx) => (
-              <div key={row.label}
-                className={`flex gap-4 py-4 fade-up fade-up-delay-${Math.min(idx + 1, 4)}`}
-                ref={(el) => {
-                  if (!el) return;
-                  const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add('is-visible'); }, { threshold: 0.1 });
-                  obs.observe(el);
-                }}
-              >
-                <span className="text-[11px] text-gray-400 font-semibold w-24 flex-shrink-0 pt-0.5 tracking-wide">{row.label}</span>
-                <div>
-                  {row.isPhone ? (
-                    <a href="tel:1811-0432" className="text-[15px] font-black text-[#B89A5A]">{row.value}</a>
-                  ) : (
-                    <p className="text-[15px] font-black text-[#1C2E50] leading-snug">{row.value}</p>
-                  )}
-                  {row.sub && <p className="text-[11px] text-gray-400 mt-0.5">{row.sub}</p>}
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* ── 사업개요 사진 ── */}
+      <section className="w-full bg-white py-12">
+        <div className="max-w-[1200px] mx-auto px-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/home/overview.jpg" alt="사업개요" className="w-full h-auto block rounded-xl shadow-md" />
         </div>
       </section>
+
+      {/* ── 홈화면 입지섹션 대제목 ── */}
+      <section className="w-full bg-white pt-10 pb-4">
+        <div className="max-w-[1200px] mx-auto px-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/home/location_title.jpg" alt="입지섹션 대제목" className="w-full h-auto block rounded-xl shadow-sm" />
+        </div>
+      </section>
+
+      {/* ── 입지(학군) 사진 ── */}
+      <section className="w-full bg-white pb-12">
+        <div className="max-w-[1200px] mx-auto px-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/home/location_school.png" alt="입지 학군" className="w-full h-auto block rounded-xl shadow-md" />
+        </div>
+      </section>
+
 
       {/* ── 7대 프리미엄 ── */}
       <section className="w-full bg-white py-14">
@@ -267,7 +264,7 @@ export default function Home() {
         </div>
         <div className="max-w-[1200px] mx-auto px-6 pb-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/home/map.png" alt="오시는 길" className="w-full h-auto block rounded-2xl shadow-md" />
+          <img src="/img/home/map_new.jpg" alt="오시는 길 위치" className="w-full h-auto block rounded-xl shadow-md" />
         </div>
         <div className="h-16" />
       </section>

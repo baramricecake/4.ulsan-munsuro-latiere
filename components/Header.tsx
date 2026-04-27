@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Phone, Menu, X } from 'lucide-react';
@@ -16,9 +16,19 @@ export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
-      <header className="w-full bg-[#1C2E50] sticky top-0 z-50">
+      <header className={`w-full sticky top-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#1C2E50]/90 backdrop-blur-md' : 'bg-[#1C2E50]'}`}>
         <div className="max-w-[1200px] mx-auto px-6 h-[56px] flex items-center justify-between">
           {/* 로고 */}
           <Link href="/" onClick={() => setMenuOpen(false)}>
@@ -26,7 +36,7 @@ export default function Header() {
             <img
               src="/img/logo-light.png"
               alt="문수로 라티에르 673"
-              className="h-[22px] w-auto object-contain"
+              className="h-[28px] md:h-[32px] w-auto object-contain transition-all"
             />
           </Link>
 
@@ -48,11 +58,10 @@ export default function Header() {
           {/* 우측: 전화 + 햄버거(모바일) */}
           <div className="flex items-center gap-2">
             <a
-              href="tel:1811-0432"
-              className="flex items-center gap-1.5 border border-white/40 text-white px-3 py-1.5 rounded-full text-[11px] font-bold hover:bg-white/10 transition-colors"
+              href="/#form"
+              className="flex items-center gap-1.5 bg-[#B89A5A] text-white px-4 py-1.5 rounded-sm text-[12px] font-bold hover:bg-[#a38448] transition-colors"
             >
-              <Phone className="w-3 h-3" />
-              1811-0432
+              관심고객등록
             </a>
             <button
               className="md:hidden p-1.5 text-white/80 hover:text-white"
@@ -83,11 +92,11 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href="tel:1811-0432"
-              className="mt-6 flex items-center justify-center gap-2 bg-[#B89A5A] text-white py-3 rounded-lg font-bold text-sm"
+              href="/#form"
+              onClick={() => setMenuOpen(false)}
+              className="mt-6 flex items-center justify-center gap-2 bg-[#B89A5A] text-white py-3 rounded-sm font-bold text-sm"
             >
-              <Phone className="w-4 h-4" />
-              1811-0432
+              관심고객등록
             </a>
           </div>
         </div>

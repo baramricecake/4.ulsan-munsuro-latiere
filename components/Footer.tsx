@@ -19,18 +19,18 @@ export default function Footer() {
       </div>
 
       {/* 하단 고정 CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
-        <div className="w-full flex pointer-events-auto shadow-[0_-2px_20px_rgba(0,0,0,0.2)]">
+      <div className="fixed bottom-4 left-4 right-4 z-50 pointer-events-none md:max-w-[400px] md:mx-auto">
+        <div className="w-full flex pointer-events-auto shadow-[0_4px_20px_rgba(0,0,0,0.25)] rounded-2xl overflow-hidden">
           <a
             href="tel:1811-0432"
-            className="flex-1 bg-white text-[#1C2E50] flex items-center justify-center gap-1.5 font-bold text-[13px] h-14 border-r border-gray-100 active:bg-gray-50 transition"
+            className="flex-1 bg-white text-[#1C2E50] flex items-center justify-center gap-1.5 font-bold text-[14px] h-14 border-r border-gray-100 active:bg-gray-50 transition"
           >
             <Phone className="w-4 h-4" />
-            전화 상담
+            잔여세대 확인
           </a>
           <a
             href="/contact"
-            className="flex-1 bg-[#B89A5A] text-white flex items-center justify-center font-bold text-[13px] h-14 active:bg-[#a38448] transition"
+            className="flex-1 bg-[#B89A5A] text-white flex items-center justify-center font-bold text-[14px] h-14 active:bg-[#a38448] transition"
           >
             관심고객 등록
           </a>
